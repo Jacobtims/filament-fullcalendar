@@ -24,6 +24,7 @@ export default function fullcalendar({
     config,
     editable,
     selectable,
+    initialView,
     eventClassNames,
     eventContent,
     eventDidMount,
@@ -44,12 +45,16 @@ export default function fullcalendar({
                 timeZone,
                 editable,
                 selectable,
+                initialView,
                 ...config,
                 locales,
                 eventClassNames,
                 eventContent,
                 eventDidMount,
                 eventWillUnmount,
+                datesSet: (viewInfo) => {
+                    this.$wire.setInitialView(viewInfo.view.type)
+                },
                 events: (info, successCallback, failureCallback) => {
                     this.$wire.fetchEvents({ start: info.startStr, end: info.endStr, timezone: info.timeZone })
                         .then(successCallback)

@@ -8,6 +8,7 @@ use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Widgets\Widget;
+use Livewire\Attributes\Session;
 use Saade\FilamentFullCalendar\Actions;
 
 class FullCalendarWidget extends Widget implements HasForms, HasActions
@@ -20,30 +21,11 @@ class FullCalendarWidget extends Widget implements HasForms, HasActions
     use Concerns\InteractsWithModalActions;
     use Concerns\InteractsWithRawJS;
     use Concerns\CanBeConfigured;
+    use Concerns\InteractsWithInitialView;
 
     protected static string $view = 'filament-fullcalendar::fullcalendar';
 
     protected int | string | array $columnSpan = 'full';
-
-    protected function headerActions(): array
-    {
-        return [
-            Actions\CreateAction::make(),
-        ];
-    }
-
-    protected function modalActions(): array
-    {
-        return [
-            Actions\EditAction::make(),
-            Actions\DeleteAction::make(),
-        ];
-    }
-
-    protected function viewAction(): Action
-    {
-        return Actions\ViewAction::make();
-    }
 
     /**
      * FullCalendar will call this function whenever it needs new event data.
